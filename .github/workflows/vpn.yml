@@ -9,13 +9,12 @@ jobs:
     steps:
       - name: Set up WireGuard Generator
         run: |
-          echo "Generating cryptographic keys..."
           sudo apt-get update && sudo apt-get install -y wireguard
           SERVER_PRIVKEY=$(wg genkey)
           SERVER_PUBKEY=$(echo "$SERVER_PRIVKEY" | wg pubkey)
           CLIENT_PRIVKEY=$(wg genkey)
           CLIENT_PUBKEY=$(echo "$CLIENT_PRIVKEY" | wg pubkey)
-          
+          
           echo "============================="
           echo "--- CLIENT CONFIG START ---"
           echo "[Interface]"
@@ -28,4 +27,3 @@ jobs:
           echo "AllowedIPs = 0.0.0.0/0"
           echo "--- CLIENT CONFIG END ---"
           echo "============================="
-
